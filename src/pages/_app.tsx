@@ -5,10 +5,11 @@ import { CacheProvider, EmotionCache } from '@emotion/react'
 import { CssBaseline } from '@mui/material'
 import createEmotionCache from 'styles/createEmotionCache'
 
-import '@fontsource/roboto/300.css'
-import '@fontsource/roboto/400.css'
-import '@fontsource/roboto/500.css'
-import '@fontsource/roboto/700.css'
+import '@fontsource/fira-code/300.css'
+import '@fontsource/fira-code/400.css'
+import '@fontsource/fira-code/500.css'
+import '@fontsource/fira-code/700.css'
+import { Layout } from 'components/layout'
 
 interface MyAppProps extends AppProps {
   emotionCache?: EmotionCache
@@ -30,7 +31,9 @@ const App: React.FC<MyAppProps> = (props) => {
       </Head>
       <CacheProvider value={emotionCache}>
         <CssBaseline />
-        <Component {...pageProps} />
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
       </CacheProvider>
     </>
   )
