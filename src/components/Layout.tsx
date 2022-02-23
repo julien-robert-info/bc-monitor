@@ -1,5 +1,6 @@
 import * as React from 'react'
 import { AppBar, Box, Container, Toolbar, Typography } from '@mui/material'
+import { ThemeSwitcher } from './Theme/ThemeSwitcher'
 
 export const Layout: React.FC<{ children: React.ReactNode }> = ({
   children
@@ -17,6 +18,7 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({
             >
               Bc-monitor
             </Typography>
+            <ThemeSwitcher />
           </Toolbar>
         </AppBar>
         <Container>{children}</Container>
