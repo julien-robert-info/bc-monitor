@@ -8,12 +8,16 @@ enum ThemeName {
 export type ThemeNameType = keyof typeof ThemeName
 
 const lightThemeOptions: ThemeOptions = {
+  typography: {
+    fontFamily: 'fira-code, monospace'
+  },
   palette: {
     mode: 'light'
   }
 }
 
 const darkThemeOptions: ThemeOptions = {
+  ...lightThemeOptions,
   palette: {
     mode: 'dark'
   }
