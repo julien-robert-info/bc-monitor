@@ -6,6 +6,12 @@ import createEmotionCache from 'utils/createEmotionCache'
 import { CssBaseline } from '@mui/material'
 import { Layout } from 'components/Layout'
 import { AppThemeProvider } from 'components/Theme/AppThemeProvider'
+import { Web3ReactProvider } from '@web3-react/core'
+import {
+  ExternalProvider,
+  JsonRpcFetchFunc,
+  Web3Provider
+} from '@ethersproject/providers'
 
 import '@fontsource/fira-code/300.css'
 import '@fontsource/fira-code/400.css'
@@ -18,6 +24,10 @@ interface MyAppProps extends AppProps {
 
 const clientSideEmotionCache = createEmotionCache()
 
+const getLibrary = (provider: ExternalProvider | JsonRpcFetchFunc) => {
+  return new Web3Provider(provider)
+}
+
 const App: React.FC<MyAppProps> = (props) => {
   const { Component, emotionCache = clientSideEmotionCache, pageProps } = props
 
@@ -28,19 +38,21 @@ const App: React.FC<MyAppProps> = (props) => {
 
   return (
     <>
-      <Head>
-        <title>Blockchain monitor</title>
-        <meta
-          name="description"
-          content="Data mining tool for evm compatible blockchain"
-        />
-      </Head>
       <CacheProvider value={emotionCache}>
+        <Head>
+          <title>Blockchain monitor</title>
+          <meta
+            name="description"
+            content="Data mining tool for evm compatible blockchain"
+          />
+        </Head>
         <AppThemeProvider>
           <CssBaseline />
-          <Layout>
-            <Component {...pageProps} />
-          </Layout>
+          <Web3ReactProvider getLibrary={getLibrary}>
+            <Layout>
+              <Component {...pageProps} />
+            </Layout>
+          </Web3ReactProvider>
         </AppThemeProvider>
       </CacheProvider>
     </>

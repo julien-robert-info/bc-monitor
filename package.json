@@ -9,16 +9,23 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@0xsequence/multicall": "^0.36.4",
     "@emotion/cache": "^11.7.1",
     "@emotion/react": "^11.8.0",
     "@emotion/server": "^11.4.0",
     "@emotion/styled": "^11.8.0",
+    "@ethersproject/providers": "^5.5.3",
     "@fontsource/fira-code": "^4.5.5",
     "@mui/icons-material": "^5.4.2",
     "@mui/material": "^5.4.2",
+    "@web3-react/core": "^6.1.9",
+    "@web3-react/network-connector": "^6.2.9",
+    "ether-swr": "^2.0.1",
+    "ethers": "^5.5.4",
     "next": "12.1.0",
     "react": "17.0.2",
-    "react-dom": "17.0.2"
+    "react-dom": "17.0.2",
+    "swr": "^1.2.2"
   },
   "devDependencies": {
     "@types/node": "17.0.18",

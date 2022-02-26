@@ -1,4 +1,7 @@
+import React from 'react'
 import { Box, Typography } from '@mui/material'
+import BlockNumber from 'components/BlockNumber'
+import ChainId from 'components/ChainId'
 
 const Home = () => {
   return (
@@ -20,6 +23,8 @@ const Home = () => {
         >
           Data mining tool for evm compatible blockchain
         </Typography>
+        <BlockNumber />
+        <ChainId />
       </Box>
     </>
   )
