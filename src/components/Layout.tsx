@@ -1,13 +1,10 @@
 import React from 'react'
 import { AppBar, Box, Container, Toolbar, Typography } from '@mui/material'
 import { ThemeSwitcher } from './Theme/ThemeSwitcher'
-import { NetworkConnector } from '@web3-react/network-connector'
 import { useWeb3React } from '@web3-react/core'
 import { EtherSWRConfig } from 'ether-swr'
-
-const network = new NetworkConnector({
-  urls: { 137: 'https://polygon-rpc.com' }
-})
+import { networkConnector } from 'utils/networks'
+import SelectNetwork from './SelectNetwork'
 
 export const Layout: React.FC<{ children: React.ReactNode }> = ({
   children
@@ -18,7 +15,7 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({
     async function connect() {
       if (!active) {
         try {
-          await activate(network)
+          await activate(networkConnector)
         } catch (e) {
           console.log(e)
         }
@@ -40,6 +37,7 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({
             >
               Bc-monitor
             </Typography>
+            <SelectNetwork />
             <ThemeSwitcher />
           </Toolbar>
         </AppBar>

@@ -16,7 +16,7 @@ const BlockNumber = () => {
   if (!blockNumber) {
     return <div>...</div>
   }
-  return <div>Block {blockNumber}</div>
+  return <div>Block: {blockNumber}</div>
 }
 
 export default BlockNumber
