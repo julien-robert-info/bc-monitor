@@ -20,6 +20,7 @@
     "@mui/material": "^5.4.2",
     "@web3-react/core": "^6.1.9",
     "@web3-react/network-connector": "^6.2.9",
+    "clsx": "^1.1.1",
     "ether-swr": "^2.0.1",
     "ethers": "^5.5.4",
     "next": "12.1.0",

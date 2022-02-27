@@ -18,7 +18,7 @@ const Home = () => {
         <Typography
           variant="h5"
           component="div"
-          color="primary.main"
+          color="text.secondary"
           gutterBottom
         >
           Data mining tool for evm compatible blockchain
