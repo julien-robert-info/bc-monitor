@@ -1,6 +1,6 @@
 import React from 'react'
 import { useWeb3React } from '@web3-react/core'
-import { chains, networkConnector } from 'utils/networks'
+import { chains, networkConnector } from 'data/networks'
 import Select, { SelectChangeEvent } from '@mui/material/Select'
 import { MenuItem } from '@mui/material'
 
