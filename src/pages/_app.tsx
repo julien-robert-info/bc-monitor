@@ -5,7 +5,7 @@ import { CacheProvider, EmotionCache } from '@emotion/react'
 import createEmotionCache from 'utils/createEmotionCache'
 import { CssBaseline } from '@mui/material'
 import { Layout } from 'components/Layout'
-import { AppThemeProvider } from 'components/Theme/AppThemeProvider'
+import { AppThemeProvider } from 'components/Theme'
 import { Web3ReactProvider } from '@web3-react/core'
 import {
   ExternalProvider,
@@ -30,11 +30,6 @@ const getLibrary = (provider: ExternalProvider | JsonRpcFetchFunc) => {
 
 const App: React.FC<MyAppProps> = (props) => {
   const { Component, emotionCache = clientSideEmotionCache, pageProps } = props
-
-  //disable ssr for user theme preferences in localstorage
-  const [mounted, setMounted] = React.useState(false)
-  React.useEffect(() => setMounted(true), [])
-  if (!mounted) return null
 
   return (
     <>

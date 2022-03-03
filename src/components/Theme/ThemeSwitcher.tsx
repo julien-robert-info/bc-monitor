@@ -1,6 +1,7 @@
 import React from 'react'
 import { IconButton, SvgIconProps } from '@mui/material'
-import { NightsStay, WbSunny } from '@mui/icons-material'
+import WbSunny from '@mui/icons-material/WbSunny'
+import NightsStay from '@mui/icons-material/NightsStay'
 import { ThemeNameType } from 'components/Theme/theme'
 import { useTheme } from './AppThemeProvider'
 

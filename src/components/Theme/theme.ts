@@ -1,4 +1,4 @@
-import { ThemeOptions } from '@mui/material/styles'
+import { ThemeOptions, createTheme, Theme } from '@mui/material/styles'
 
 enum ThemeName {
   light = 'light',
@@ -16,6 +16,8 @@ const lightThemeOptions: ThemeOptions = {
   }
 }
 
+export const lightTheme = createTheme(lightThemeOptions)
+
 const darkThemeOptions: ThemeOptions = {
   ...lightThemeOptions,
   palette: {
@@ -23,16 +25,18 @@ const darkThemeOptions: ThemeOptions = {
   }
 }
 
+export const darkTheme = createTheme(darkThemeOptions)
+
 export const themeList: Array<{
   name: ThemeNameType
-  option: ThemeOptions
+  theme: Theme
 }> = [
   {
     name: 'light',
-    option: lightThemeOptions
+    theme: lightTheme
   },
   {
     name: 'dark',
-    option: darkThemeOptions
+    theme: darkTheme
   }
 ]
