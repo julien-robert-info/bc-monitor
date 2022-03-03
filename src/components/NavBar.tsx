@@ -13,7 +13,7 @@ const NavBar = () => {
             <MuiNextLink
               key={`${title}${i}`}
               href={path}
-              variant="button"
+              underline="hover"
               sx={{ color: 'text.secondary' }}
             >
               {title}
