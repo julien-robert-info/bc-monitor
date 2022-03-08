@@ -1,33 +1,55 @@
 import React from 'react'
 import { VaultInfo } from 'data/qiVaults'
-import { Card, CardActionArea, CardContent, Typography } from '@mui/material'
+import {
+  Card,
+  CardActionArea,
+  CardContent,
+  Skeleton,
+  Typography
+} from '@mui/material'
 import MuiNextLink from './MuiNextLink'
+import useEtherSWR from 'ether-swr'
+import { formatEther, formatUnits } from 'ethers/lib/utils'
 
-interface VaultProps extends VaultInfo {
-  vaultcount: number
-  minCollat: number
-  borrowSupply: string
-}
+const QiVaultCard: React.FC<VaultInfo> = ({ token, address }) => {
+  const currencyFormat = () => new Intl.NumberFormat()
 
-const QiVaultCard: React.FC<VaultProps> = ({
-  token,
-  address,
-  vaultcount,
-  minCollat,
-  borrowSupply
-}) => {
+  const { data: vaultCount } = useEtherSWR([address, 'vaultCount'])
+  const { data: minCollat } = useEtherSWR([
+    address,
+    '_minimumCollateralPercentage'
+  ])
+  const { data: borrowSupply } = useEtherSWR([address, 'getDebtCeiling'])
+
   return (
     <Card>
       <CardActionArea component={MuiNextLink} href={'/qiDao/' + address}>
         <CardContent>
-          <Typography noWrap variant="h5" component="div">
+          <Typography noWrap variant="h5">
             {token}
           </Typography>
           <Typography sx={{ mb: 1.5 }} color="text.secondary">
-            Owners: {vaultcount}
+            {vaultCount ? (
+              'Owners: ' + parseInt(formatUnits(vaultCount, 0))
+            ) : (
+              <Skeleton />
+            )}
           </Typography>
-          <Typography variant="body2">Min Collateral: {minCollat}%</Typography>
-          <Typography variant="body2">MAI Available: {borrowSupply}</Typography>
+          <Typography variant="body2">
+            {minCollat ? (
+              'Min Collateral: ' + parseInt(formatUnits(minCollat, 0)) + '%'
+            ) : (
+              <Skeleton />
+            )}
+          </Typography>
+          <Typography variant="body2">
+            {borrowSupply ? (
+              'MAI Available: ' +
+              currencyFormat().format(parseFloat(formatEther(borrowSupply)))
+            ) : (
+              <Skeleton />
+            )}
+          </Typography>
         </CardContent>
       </CardActionArea>
     </Card>

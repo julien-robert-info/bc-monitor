@@ -23,8 +23,10 @@ const Home = () => {
         >
           Data mining tool for evm compatible blockchain
         </Typography>
-        <BlockNumber />
-        <ChainId />
+        <Box sx={{ width: 150, mx: 'auto' }}>
+          <BlockNumber />
+          <ChainId />
+        </Box>
       </Box>
     </>
   )

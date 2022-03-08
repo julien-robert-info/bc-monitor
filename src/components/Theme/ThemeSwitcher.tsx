@@ -29,7 +29,7 @@ export const ThemeSwitcher = () => {
 
   return (
     <>
-      <IconButton onClick={themes[current].onClick}>
+      <IconButton onClick={themes[current].onClick} sx={{ mx: 1 }}>
         {themes[current].icon}
       </IconButton>
     </>

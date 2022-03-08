@@ -1,5 +1,6 @@
-import useEtherSWR from 'ether-swr'
 import React from 'react'
+import { Skeleton, Typography } from '@mui/material'
+import useEtherSWR from 'ether-swr'
 
 const BlockNumber = () => {
   const { data: blockNumber, mutate } = useEtherSWR(['getBlockNumber'], {
@@ -13,10 +14,11 @@ const BlockNumber = () => {
     ]
   })
 
-  if (!blockNumber) {
-    return <div>...</div>
-  }
-  return <div>Block: {blockNumber}</div>
+  return (
+    <Typography variant="body2">
+      {blockNumber ? 'Block: ' + blockNumber : <Skeleton />}
+    </Typography>
+  )
 }
 
 export default BlockNumber
