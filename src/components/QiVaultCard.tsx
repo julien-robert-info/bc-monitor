@@ -10,10 +10,9 @@ import {
 import MuiNextLink from './MuiNextLink'
 import useEtherSWR from 'ether-swr'
 import { formatEther, formatUnits } from 'ethers/lib/utils'
+import { currencyFormat } from 'utils'
 
 const QiVaultCard: React.FC<VaultInfo> = ({ token, address }) => {
-  const currencyFormat = () => new Intl.NumberFormat()
-
   const { data: vaultCount } = useEtherSWR([address, 'vaultCount'])
   const { data: minCollat } = useEtherSWR([
     address,
@@ -23,7 +22,7 @@ const QiVaultCard: React.FC<VaultInfo> = ({ token, address }) => {
 
   return (
     <Card>
-      <CardActionArea component={MuiNextLink} href={'/qiDao/' + address}>
+      <CardActionArea component={MuiNextLink} href={'/qiDao/vault/' + address}>
         <CardContent>
           <Typography noWrap variant="h5">
             {token}
