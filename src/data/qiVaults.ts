@@ -38,6 +38,10 @@ export const qiVaults: { [chainId: number]: Array<VaultInfo> } = {
       address: '0xF086dEdf6a89e7B16145b03a6CB0C0a9979F1433'
     },
     {
+      token: 'vGHST',
+      address: '0x1F0aa72b980d65518e88841bA1dA075BD43fa933'
+    },
+    {
       token: 'camWMATIC',
       address: '0x88d84a85A87ED12B8f098e8953B322fF789fCD1a'
     },

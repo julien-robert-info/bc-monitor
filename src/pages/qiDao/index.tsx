@@ -9,7 +9,7 @@ const QiDao = () => {
   const vaults = chainId !== undefined ? qiVaults[chainId] : []
 
   return (
-    <Box sx={{ width: '100%', textAlign: 'center', mt: '5em' }}>
+    <Box sx={{ width: '100%', textAlign: 'center', mt: '5em', mb: '3em' }}>
       <Grid container spacing={3}>
         {vaults &&
           vaults.map((vault) => (

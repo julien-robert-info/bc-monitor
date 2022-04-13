@@ -18,7 +18,7 @@ const VaultDetails = () => {
   return (
     <>
       {vault && (
-        <Box sx={{ width: '100%', textAlign: 'center', mt: '5em' }}>
+        <Box sx={{ width: '100%', textAlign: 'center', mt: '5em', mb: '3em' }}>
           <Typography variant="h5" component="div">
             {vault.token}
           </Typography>

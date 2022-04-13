@@ -1,29 +1,39 @@
 import React from 'react'
 import { Divider, ListItem, ListItemText, Skeleton, Grid } from '@mui/material'
-import useEtherSWR from 'ether-swr'
 import { formatEther } from 'ethers/lib/utils'
 import { currencyFormat } from 'utils'
+import useEtherSWR from 'ether-swr'
 
-const QiVaultOwnerRow: React.FC<{ address: string; vaultId: number }> = ({
+interface QiVaultOwnerRowProps {
+  address: string
+  vaultId: number
+  lastLoaded: number
+  setLastLoaded: any
+}
+
+const QiVaultOwnerRow: React.FC<QiVaultOwnerRowProps> = ({
   address,
-  vaultId
+  vaultId,
+  lastLoaded,
+  setLastLoaded
 }) => {
-  const { data: owner } = useEtherSWR([address, 'ownerOf', vaultId])
-  const { data: collateralRatio } = useEtherSWR([
-    address,
-    'checkCollateralPercentage',
-    vaultId
+  const { data: owner, error } = useEtherSWR([
+    [address, 'ownerOf', vaultId],
+    [address, 'vaultCollateral', vaultId],
+    [address, 'vaultDebt', vaultId],
+    [address, 'checkCollateralPercentage', vaultId]
   ])
-  const { data: collateral } = useEtherSWR([
-    address,
-    'vaultCollateral',
-    vaultId
-  ])
-  const { data: debt } = useEtherSWR([address, 'vaultDebt', vaultId])
+
+  React.useEffect(() => {
+    if (owner && !error && lastLoaded < vaultId) {
+      setLastLoaded(vaultId)
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [owner, error])
 
   return (
     <>
-      {collateralRatio > 0 && (
+      {owner && owner[2] > 0 && (
         <>
           <ListItem alignItems="center">
             <Grid container>
@@ -31,42 +41,26 @@ const QiVaultOwnerRow: React.FC<{ address: string; vaultId: number }> = ({
                 <ListItemText primary={vaultId} />
               </Grid>
               <Grid item xs={4}>
-                {owner ? <ListItemText secondary={owner} /> : <Skeleton />}
+                <ListItemText secondary={owner[0]} />
               </Grid>
               <Grid item xs={3}>
-                {collateral ? (
-                  <ListItemText
-                    primary={
-                      'Collateral: ' +
-                      currencyFormat().format(
-                        parseFloat(formatEther(collateral))
-                      )
-                    }
-                  />
-                ) : (
-                  <Skeleton />
-                )}
+                <ListItemText
+                  primary={
+                    'Collateral: ' +
+                    currencyFormat().format(parseFloat(formatEther(owner[1])))
+                  }
+                />
               </Grid>
               <Grid item xs={2}>
-                {debt ? (
-                  <ListItemText
-                    primary={
-                      'Debt: ' +
-                      currencyFormat().format(parseFloat(formatEther(debt)))
-                    }
-                  />
-                ) : (
-                  <Skeleton />
-                )}
+                <ListItemText
+                  primary={
+                    'Debt: ' +
+                    currencyFormat().format(parseFloat(formatEther(owner[2])))
+                  }
+                />
               </Grid>
               <Grid item xs={2}>
-                {collateralRatio ? (
-                  <ListItemText
-                    primary={'Health factor: ' + collateralRatio + '%'}
-                  />
-                ) : (
-                  <Skeleton />
-                )}
+                <ListItemText primary={'Health factor: ' + owner[3] + '%'} />
               </Grid>
             </Grid>
           </ListItem>
