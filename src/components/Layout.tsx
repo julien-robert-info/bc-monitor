@@ -5,6 +5,7 @@ import { EtherSWRConfig } from 'ether-swr'
 import { networkConnector } from 'data/networks'
 import Header from './Header'
 import ABIs from 'data/ABI'
+import ScrollTop from './ScrollTop'
 
 export const Layout: React.FC<{ children: React.ReactNode }> = ({
   children
@@ -38,6 +39,7 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({
             {children}
           </EtherSWRConfig>
         )}
+        <ScrollTop />
       </Container>
     </Box>
   )
