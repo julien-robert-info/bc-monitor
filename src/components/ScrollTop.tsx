@@ -5,14 +5,15 @@ import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp'
 const ScrollTop = () => {
   const [scrollY, setScrollY] = React.useState(0)
 
+  const handleScroll = () => {
+    setScrollY(window.scrollY)
+  }
+
   const scrollTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }
 
   React.useEffect(() => {
-    const handleScroll = () => {
-      setScrollY(window.scrollY)
-    }
     handleScroll()
 
     window.addEventListener('scroll', handleScroll)

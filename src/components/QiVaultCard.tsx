@@ -28,18 +28,10 @@ const QiVaultCard: React.FC<VaultInfo> = ({ token, address }) => {
             {token}
           </Typography>
           <Typography sx={{ mb: 1.5 }} color="text.secondary">
-            {vaultCount ? (
-              'Owners: ' + parseInt(formatUnits(vaultCount, 0))
-            ) : (
-              <Skeleton />
-            )}
+            {vaultCount ? `Owners: ${vaultCount}` : <Skeleton />}
           </Typography>
           <Typography variant="body2">
-            {minCollat ? (
-              'Min Collateral: ' + parseInt(formatUnits(minCollat, 0)) + '%'
-            ) : (
-              <Skeleton />
-            )}
+            {minCollat ? `Min Collateral:  ${minCollat} %` : <Skeleton />}
           </Typography>
           <Typography variant="body2">
             {borrowSupply ? (
