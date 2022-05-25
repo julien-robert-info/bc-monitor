@@ -72,7 +72,7 @@ const QiVaultOwnerRow: React.FC<QiVaultOwnerRowProps> = ({
                   />
                 </Grid>
                 <Grid item xs={2}>
-                  <ListItemText primary={`'Health factor: ${owner[3]}%`} />
+                  <ListItemText primary={`Health factor: ${owner[3]}%`} />
                 </Grid>
               </Grid>
             </ListItem>
